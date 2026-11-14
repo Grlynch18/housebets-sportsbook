@@ -1,0 +1,9 @@
+'use client'
+import Link from 'next/link';import {ChevronRight,Lock} from 'lucide-react';import {Fixture,teams} from '@/lib/data';import {Crest} from './Crest';import {OddsButton} from './OddsButton';import {useBook} from '@/lib/store'
+export function MatchRow({f}:{f:Fixture}){const b=useBook(),i=b.info(f),show=i.status!='upcoming',fin=i.status=='ft',sus=b.sus(`${f.id}|mr.0`),L=[teams[f.h].short,'Draw',teams[f.a].short]
+return <div data-row className="grid grid-cols-[52px_minmax(0,1fr)_20px] items-center gap-x-3 gap-y-2 border-t border-white/[.05] px-3 py-2.5 first:border-0 md:grid-cols-[64px_minmax(0,1fr)_24px_repeat(3,88px)_44px] md:px-4">
+<Link href={`/match/${f.id}`} className="num text-xs">{i.live?<><span className="rounded-[3px] bg-live/90 px-1.5 py-px text-[10px] font-semibold text-white">LIVE</span><div className="mt-1 text-mute">{i.label}</div></>:<span className={fin?'text-mute':'text-aqua'}>{i.label}</span>}</Link>
+<Link href={`/match/${f.id}`} className="min-w-0 space-y-1.5 text-[13px]">{[f.h,f.a].map(k=><div key={k} className="flex items-center gap-2"><Crest k={k} size={20}/><span className="truncate">{teams[k].name}</span></div>)}</Link>
+<div className="num space-y-1.5 text-center text-[13px] font-semibold">{show&&<><div>{i.sc[0]}</div><div>{i.sc[1]}</div></>}</div>
+<div className="col-span-3 grid grid-cols-3 gap-2 md:contents">{sus?<div className={`col-span-3 flex h-10 items-center justify-center gap-2 rounded border border-dashed text-xs ${fin?'border-white/10 text-mute':'border-warn/40 text-warn'}`}>{fin?'Full time':<><Lock size={12}/>Suspended</>}</div>:L.map((l,k)=><OddsButton key={k} bare id={`${f.id}|mr.${k}`} label={l}/>)}
+<Link href={`/match/${f.id}`} className="flex items-center justify-end text-xs text-mute hover:text-white">+{f.n}<ChevronRight size={14}/></Link></div></div>}

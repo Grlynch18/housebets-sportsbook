@@ -1,0 +1,2 @@
+import type {Config} from 'tailwindcss'
+export default {content:['./app/**/*.tsx','./components/**/*.tsx'],theme:{extend:{colors:{abyss:'#041216',ocean:'#0B1920',dark:'#0B1920',surface:'#122A32',aqua:'#82E0E0',mute:'#7F98A3',live:'#E5566D',ok:'#3DBE8B',warn:'#D9A441'},fontFamily:{sans:['var(--font-geist-sans)','Inter','system-ui','sans-serif']},borderRadius:{DEFAULT:'4px',md:'4px',lg:'6px',xl:'8px'}}},plugins:[]} satisfies Config

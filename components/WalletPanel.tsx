@@ -1,0 +1,6 @@
+'use client'
+import {useBook} from '@/lib/store'
+const L={deposit:'Starting balance',stake:'Bet placed',win:'Bet won',refund:'Stake refunded',cashout:'Cashed out'}
+export function WalletPanel(){const b=useBook(),active=b.bets.filter(x=>x.st=='open').reduce((a,x)=>a+x.stake,0)
+return <section className="mt-5 grid gap-6 md:grid-cols-[240px_minmax(0,1fr)]"><div><div className="label">Available balance</div><div className="num mt-1 text-2xl font-semibold">{b.bal.toFixed(2)} <span className="text-xs font-normal text-mute">USDT</span></div><div className="label mt-4">Total active stakes</div><div className="num mt-1 text-lg">{active.toFixed(2)}</div><p className="mt-2 text-[11px] text-mute">Demo wallet. Cash out lives in the bet slip while a match is live.</p></div>
+<div><div className="label mb-1">Recent transactions</div>{[...b.ledger].reverse().slice(0,7).map(t=><div key={t.id} className="num flex items-center justify-between border-b border-white/[.05] py-1.5 text-xs"><span><span className="text-white">{L[t.type]}</span> <span className="text-mute">{t.ref??''}</span></span><span className="flex gap-4"><b className={t.amount>=0?'text-ok':'text-live'}>{t.amount>0?'+':''}{t.amount.toFixed(2)}</b><span className="w-20 text-right text-mute">{t.bal.toFixed(2)}</span></span></div>)}</div></section>}

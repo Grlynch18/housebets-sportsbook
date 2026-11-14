@@ -1,0 +1,10 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-abyss text-[#E8F1F2] antialiased}
+h1{letter-spacing:-.015em}
+.glass{background:rgba(11,25,32,.84);backdrop-filter:blur(14px) saturate(1.15);border:1px solid rgba(130,224,224,.12);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.surface{background:#0B1920;border-radius:6px}
+.label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#7F98A3}
+.num{font-variant-numeric:tabular-nums}
+.noscroll{scrollbar-width:none}.noscroll::-webkit-scrollbar{display:none}
+html,body{overflow-x:hidden}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

@@ -1,0 +1,1 @@
+export function Av({n,s=32}:{n:string;s?:number}){return <span style={{width:s,height:s,fontSize:s*.42}} className="grid shrink-0 place-items-center rounded-full border border-white/10 bg-[#122A32] font-semibold text-aqua">{n[0]}</span>}

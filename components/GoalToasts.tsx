@@ -1,0 +1,4 @@
+'use client'
+import Link from 'next/link';import {AnimatePresence,motion} from 'framer-motion';import {useBook} from '@/lib/store';import {SportIcon} from './SportIcon'
+export function GoalToasts(){const {goalFeed,now}=useBook(),live=goalFeed.filter(g=>now-g.ts<5000)
+return <div className="pointer-events-none fixed right-3 top-16 z-[55] space-y-2 md:right-5" aria-live="polite"><AnimatePresence>{live.map(g=><motion.div key={g.id} initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}} className="pointer-events-auto"><Link href={`/match/${g.fid}`} className="glass flex items-center gap-3 rounded-md px-4 py-2.5 text-sm"><SportIcon s="football" size={18} className="text-aqua"/><div><div className="label text-aqua">Goal</div><div className="num text-[13px]">{g.text}</div></div></Link></motion.div>)}</AnimatePresence></div>}
